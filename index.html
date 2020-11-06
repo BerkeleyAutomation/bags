@@ -1,1 +1,150 @@
-<h1>Hello!</h1>
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Transporter Networks: Rearranging the Visual World for Robotic Manipulation</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=1000">
+        <link rel="stylesheet" href="https://use.typekit.net/quv7bsd.css"> <!-- fonts -->
+        <link rel="stylesheet" href="style.css" />
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-89797207-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+    </head>
+    <body id="body">
+        <div id="main"> 
+            <header id="header">
+            </header>
+            <!-- style="padding-bottom:1em" -->
+            <div id="profile">
+                <!-- <img src="images/profile.jpg"> -->
+                <div id="profile-desc">
+                    <div id="profile-name"><b>Transporter Networks</b>: Rearranging the Visual World for Robotic Manipulation
+                        <p><br>Conference on Robot Learning (CoRL) 2020</p>
+                    </div>
+                    <p>
+                        <b>Abstract</b>. Robotic manipulation can be formulated as inducing a sequence of spatial displacements: where the space being moved can encompass an object, part of an object, or end effector. In this work, we propose the Transporter Network, a simple model architecture that rearranges deep features to infer spatial displacements from visual input -- which can parameterize robot actions. It makes no assumptions of objectness (e.g. canonical poses, models, or keypoints), it exploits spatial symmetries, and is orders of magnitude more sample efficient than our benchmarked alternatives in learning vision-based manipulation tasks: from stacking a pyramid of blocks, to assembling kits with unseen objects; from manipulating deformable ropes, to pushing piles of small objects with closed-loop feedback. Our method can represent complex multi-modal policy distributions and generalizes to multi-step sequential tasks, as well as 6DoF pick-and-place. Experiments on 10 simulated tasks show that it learns faster and generalizes better than a variety of end-to-end baselines, including policies that use ground-truth object poses. We validate our methods with hardware in the real world.
+                    </p>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+            <div class="section paper">
+                <h1>Paper</h1>
+                <p>Latest version (Oct 28, 2020): <a href="https://arxiv.org/abs/2010.14406">arXiv:2010.14406 [cs.RO]</a>.<br>To appear at the Conference on Robot Learning (CoRL) 2020</p><br>
+                <a href="https://arxiv.org/pdf/2010.14406.pdf"><img src="images/thumbnail-half.jpg"></a>
+            </div>
+            <div class="divider"></div>
+            <div class="section paper">
+                <h1>Code</h1>
+                <p>Coming soon.</p><br>
+
+            </div>
+            <div class="divider"></div>
+            <div class="section recent-work">
+                <h1>Highlights</h1>
+                <div class="highlight-proj">
+                    <!-- <a href="http://arc.cs.princeton.edu/"> --><video width="100%" playsinline="" muted="" autoplay="" loop="">
+                        <source src="images/sim-pushing-piles.mp4" type="video/mp4">
+                    </video><!-- </a> --><p>Pushing piles with closed-loop feedback</p>
+                </div>
+                <div class="highlight-proj">
+                    <video playsinline="" muted="" autoplay="" loop="">
+                        <source src="images/sim-unseen-kit.mp4" type="video/mp4">
+                    </video><p>Pick-and-place with unseen objects</p>
+                </div>
+                <div class="highlight-proj">
+                    <!-- <a href="http://tossingbot.cs.princeton.edu/"> --><video width="100%" playsinline="" muted="" autoplay="" loop="">
+                        <source src="images/sim-hanoi.mp4" type="video/mp4">
+                    </video><!-- </a> --><p>Multi-step sequential tasks</p>
+                </div>
+            </div>
+            <!-- <div class="divider"></div> -->
+            <div class="section recent-work">
+                <!-- <div class="highlight-proj">
+                    <video playsinline="" muted="" autoplay="" loop="">
+                        <source src="images/real-data-collection.mp4" type="video/mp4">
+                    </video><p>Data collection UI</p>
+                </div> -->
+                <div class="highlight-proj">
+                    <!-- <a href="http://tossingbot.cs.princeton.edu/"> --><video width="100%" playsinline="" muted="" autoplay="" loop="">
+                        <source src="images/real-assemble-kit.mp4" type="video/mp4">
+                    </video><!-- </a> --><p>Production pick-and-place w/o 3D models</p>
+                </div>
+                <div class="highlight-proj">
+                    <!-- <a href="https://graspinwild.cs.columbia.edu/"> --><video playsinline="" muted="" autoplay="" loop="">
+                        <source src="images/sweeping.mp4" type="video/mp4">
+                    </video><!-- </a> --><p>Learning to push piles on real robots</p>
+                </div>
+                <div class="highlight-proj">
+                    <!-- <a href="http://arc.cs.princeton.edu/"> --><video width="100%" playsinline="" muted="" autoplay="" loop="">
+                        <source src="images/real-stack-plates.mp4" type="video/mp4">
+                    </video><!-- </a> --><p>Pick-conditioned placing from 10 examples</p>
+                </div>
+            </div>            
+            <div class="divider"></div>
+            <div class="section team">
+                <h1>Team</h1>
+                <div class="people-profile">
+                    <a href="https://andyzeng.github.io/"><img src="images/people/andy.jpg"><p>Andy Zeng</p></a>
+                </div>
+                <div class="people-profile">
+                    <a href="http://www.peteflorence.com/"><img src="images/people/pete.jpg"><p>Pete Florence</p></a>
+                </div>
+                <div class="people-profile">
+                    <a href="https://jonathantompson.github.io/"><img src="images/people/jonathan_tompson.jpeg"><p>Jonathan Tompson</p></a>
+                </div>
+                <div class="people-profile">
+                    <a href="https://www.linkedin.com/in/stefan-welker"><img src="images/people/stefan.jpg"><p>Stefan Welker</p></a>
+                </div>
+                <div class="people-profile">
+                    <a href="https://www.linkedin.com/in/jonathanchien/"><img src="images/people/jonathan_chien.jpeg"><p>Jonathan Chien</p></a>
+                </div>
+                <div class="people-profile">
+                    <a href="https://www.linkedin.com/in/maria-attarian/"><img src="images/people/maria.jpeg"><p>Maria Attarian</p></a>
+                </div>
+                <div class="people-profile">
+                    <a href="https://www.linkedin.com/in/travisdarmstrong/"><img src="images/people/travis.jpeg"><p>Travis Armstrong</p></a>
+                </div>
+                <div class="people-profile">
+                    <a href="https://www.linkedin.com/in/ivan-krasin-0ba73ba/"><img src="images/people/ivan.jpeg"><p>Ivan Krasin</p></a>
+                </div>
+                <div class="people-profile">
+                    <a href="https://www.linkedin.com/in/daduong/"><img src="images/people/dan.jpeg"><p>Dan Duong</p></a>
+                </div>
+                <div class="people-profile">
+                    <a href="https://vikas.sindhwani.org/"><img src="images/people/vikas.jpg"><p>Vikas Sindhwani</p></a>
+                </div>
+                <div class="people-profile">
+                    <a href="http://johnnylee.net/"><img src="images/people/johnny.png"><p>Johnny Lee</p></a>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+            <div class="section teamlogo">
+                <img src="images/logo.png">
+                <p>Robotics at Google</p>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="divider"></div>
+            <div class="section acknowledgements">
+                <h1>Acknowledgements</h1>
+                <p>Special thanks to Ken Goldberg, Razvan Surdulescu, Daniel Seita, Ayzaan Wahid, Vincent Vanhoucke, Anelia Angelova, for helpful feedback on writing, Sean Snyder, Jonathan Vela, Larry Bisares, Michael Villanueva, Brandon Hurd for operations and hardware support, Robert Baruch for software infrastructure, Jared Braun for UI contributions, Erwin Coumans for PyBullet advice, Laura Graesser for video narration.</p><br><br>
+            </div>
+            <div class="divider"></div>
+            <div class="section video">
+                <h1>Summary Video</h1>
+                <iframe width="910" height="512" src="https://www.youtube.com/embed/496UVuAdOP4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="divider"></div>
+            <div class="section bibtex">
+                <h1>Bibtex</h1>
+                <p>Coming soon.</p><br>
+            </div>
+            <br><br><br><br><br><br><br><br><br><br>
+            <div class="divider"></div>
+        </div>
+    </body>
+</html>
