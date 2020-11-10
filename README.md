@@ -6,6 +6,7 @@ AH! I finally figured out how to test and build this website. Summary:
 
 ```
 gem install bundler
+bundle init
 ```
 
 This will create a `Gemfile` file locally.
