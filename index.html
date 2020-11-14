@@ -107,7 +107,7 @@
 
             <div class="section part 1">
                 <h1>Videos -- Scripted Demonstrations</h1>
-                <p>These are screen recordings of the scripted demonstrator policy for tasks in DeformableRavens. The bag tasks have screen recordings slightly sped up.</p><br>
+                <p>These are screen recordings of the scripted demonstrator policy for tasks in DeformableRavens. The bag tasks have screen recordings slightly sped up, and some GIFs are compressed to reduce file sizes.</p><br>
                 <div class="highlight-proj">
                     <img src="videos/tasks/demos-cable-ring-1x.gif" width="100%">
                     <p>Cable-Ring</p>
@@ -158,7 +158,7 @@
                     <p>Bag-Items-1</p>
                 </div>
                 <div class="highlight-proj">
-                    <img src="videos/tasks/demos-bag-items-2-4x-reduced.gif" width="100%">
+                    <img src="videos/tasks/demos-bag-items-2-4x-reduced-further.gif" width="100%">
                     <p>Bag-Items-2</p>
                 </div>
                 <div class="highlight-proj">
@@ -175,70 +175,49 @@
 
             <div class="divider"></div>
             Note: the "clear: both;" thing is to get newlines done correctly.
+            Actually let's do failure cases after this. Failures can happen with both trained and scripted policies.
             -->
 
             <div style="clear: both;"></div>
 
             <div class="section part 1">
                 <h1>Videos -- Learned Policies</h1>
+                <p>These are screen recordings of learned policies when deployed on test-time starting configurations. For some GIFs, to speed them up and reduce file sizes, we remove frames corresponding to pauses between pick and place actions.</p><br>
+
                 <div class="highlight-proj">
-                    <!-- <a href="http://arc.cs.princeton.edu/"> --><video width="100%" playsinline="" muted="" autoplay="" loop="">
-                        <source src="images/sim-pushing-piles.mp4" type="video/mp4">
-                    </video><!-- </a> --><p>TODO Cables</p>
+                    <img src="videos/bag-items-2-transporter-1000-0-test-01-success-reduced.gif" width="100%">
+                    <p>Transporter policy trained on 1000 demos, and deployed on a test-time episode. It successfully brings the bag (with both items) to the target zone.</p>
                 </div>
                 <div class="highlight-proj">
-                    <video playsinline="" muted="" autoplay="" loop="">
-                        <source src="images/sim-unseen-kit.mp4" type="video/mp4">
-                    </video><p>TODO cables</p>
+                    <img src="" width="100%">
+                    <p></p>
                 </div>
                 <div class="highlight-proj">
-                    <!-- <a href="http://tossingbot.cs.princeton.edu/"> --><video width="100%" playsinline="" muted="" autoplay="" loop="">
-                        <source src="images/sim-hanoi.mp4" type="video/mp4">
-                    </video><!-- </a> --><p>TODO cables</p>
+                    <img src="" width="100%">
+                    <p></p>
                 </div>
             </div>
 
-            <!-- <div class="divider"></div> -->
-            <div class="section part 2">
-                <!-- <div class="highlight-proj">
-                    <video playsinline="" muted="" autoplay="" loop="">
-                        <source src="images/real-data-collection.mp4" type="video/mp4">
-                    </video><p>Data collection UI</p>
-                </div> -->
+            <div style="clear: both;"></div>
+
+            <div class="section part 1">
+                <h1>Videos -- Limitations and Failure Cases</h1>
+                <p>These are screen recordings showing some informative failure cases, which can happen with scripted demonstrators or with learned policies.</p><br>
+
                 <div class="highlight-proj">
-                    <!-- <a href="http://tossingbot.cs.princeton.edu/"> --><video width="100%" playsinline="" muted="" autoplay="" loop="">
-                        <source src="images/real-assemble-kit.mp4" type="video/mp4">
-                    </video><!-- </a> --><p>TODO fabrics</p>
+                    <img src="videos/demo-bag-items-1-cube-falls-out-3x-reduced.gif" width="100%">
+                    <p>Failure case on Bag-Items-1 with the scripted policy, with the item falling out of the bag when the robot attempts to lift it.</p>
                 </div>
                 <div class="highlight-proj">
-                    <!-- <a href="https://graspinwild.cs.columbia.edu/"> --><video playsinline="" muted="" autoplay="" loop="">
-                        <source src="images/sweeping.mp4" type="video/mp4">
-                    </video><!-- </a> --><p>TODO fabrics</p>
+                    <img src="" width="100%">
+                    <p></p>
                 </div>
                 <div class="highlight-proj">
-                    <!-- <a href="http://arc.cs.princeton.edu/"> --><video width="100%" playsinline="" muted="" autoplay="" loop="">
-                        <source src="images/real-stack-plates.mp4" type="video/mp4">
-                    </video><!-- </a> --><p>TODO fabrics/p>
+                    <img src="" width="100%">
+                    <p></p>
                 </div>
             </div>
 
-            <div class="section part 3">
-                <div class="highlight-proj">
-                    <!-- <a href="http://arc.cs.princeton.edu/"> --><video width="100%" playsinline="" muted="" autoplay="" loop="">
-                        <source src="images/sim-pushing-piles.mp4" type="video/mp4">
-                    </video><!-- </a> --><p>TODO bags</p>
-                </div>
-                <div class="highlight-proj">
-                    <video playsinline="" muted="" autoplay="" loop="">
-                        <source src="images/sim-unseen-kit.mp4" type="video/mp4">
-                    </video><p>TODO bags</p>
-                </div>
-                <div class="highlight-proj">
-                    <!-- <a href="http://tossingbot.cs.princeton.edu/"> --><video width="100%" playsinline="" muted="" autoplay="" loop="">
-                        <source src="images/sim-hanoi.mp4" type="video/mp4">
-                    </video><!-- </a> --><p>TODO bags</p>
-                </div>
-            </div>
 
 
             <!-- The code.
