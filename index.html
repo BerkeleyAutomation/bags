@@ -185,12 +185,12 @@
                 <p>These are screen recordings of learned policies when deployed on test-time starting configurations. For some GIFs, to speed them up and reduce file sizes, we remove frames corresponding to pauses between pick and place actions.</p><br>
 
                 <div class="highlight-proj">
-                    <img src="videos/bag-items-2-transporter-1000-0-test-01-success-reduced.gif" width="100%">
-                    <p>Transporter policy trained on 1000 demos, and deployed on a test-time episode. It successfully brings the bag (with both items) to the target zone.</p>
+                    <img src="videos/bag-items-1-transporter-100-success-3-actions-Sept11-reduced.gif" width="100%">
+                    <p>Bag-Items-1. (Zoomed-in) Transporter trained on 100 demos, and deployed at test-time. It successfully opens the bag, inserts the cube, and brings the bag to the target.</p>
                 </div>
                 <div class="highlight-proj">
-                    <img src="" width="100%">
-                    <p></p>
+                    <img src="videos/bag-items-2-transporter-1000-0-test-01-success-reduced.gif" width="100%">
+                    <p>Bag-Items-2. Transporter trained on 1000 demos, and deployed at test-time. It successfully opens the bag, inserts both blocks, and brings the bag to the target.</p>
                 </div>
                 <div class="highlight-proj">
                     <img src="" width="100%">
@@ -202,15 +202,15 @@
 
             <div class="section part 1">
                 <h1>Videos -- Limitations and Failure Cases</h1>
-                <p>These are screen recordings showing some informative failure cases, which can happen with scripted demonstrators or with learned policies.</p><br>
+                <p>These are screen recordings showing some informative failure cases, which may happen with scripted demonstrators or with learned policies. These motivate some interesting future work directions, such as learning policies that can explicitly recover from failures.</p><br>
 
                 <div class="highlight-proj">
                     <img src="videos/demo-bag-items-1-cube-falls-out-3x-reduced.gif" width="100%">
-                    <p>Failure case on Bag-Items-1 with the scripted policy, with the item falling out of the bag when the robot attempts to lift it.</p>
+                    <p>Bag-Items-1. Possibly the most common failure case. Above is the scripted policy, but this also occurs with learned Transporters. The cube is at a reasonable spot, but falls out when the robot attempts to lift it.</p>
                 </div>
                 <div class="highlight-proj">
-                    <img src="" width="100%">
-                    <p></p>
+                    <img src="videos/bag-items-1-transporter-10-interesting-failure-Sept16-spedup-reduced.gif" width="100%">
+                    <p>Bag-Items-1. Failure with a learned Transporter policy (trained with 10 demos). The policy repeatedly attempts to insert the cube in the bag but fails, and (erroneously) brings an empty bag to the target.</p>
                 </div>
                 <div class="highlight-proj">
                     <img src="" width="100%">
