@@ -180,7 +180,7 @@
             <div style="clear: both;"></div>
 
             <div class="section part 1">
-                <h1>Videos -- Learned Policies</h1>
+                <h1>Videos -- Learned Policies (Bag Tasks)</h1>
                 <p>These are screen recordings of learned policies when deployed on test-time starting configurations. For some GIFs, to speed them up and reduce file sizes, we remove frames corresponding to pauses between pick and place actions.</p><br>
 
                 <div class="highlight-proj">
@@ -203,6 +203,36 @@
             </div>
 
             <div style="clear: both;"></div>
+
+            <div class="section part 1">
+                <h1>Videos -- Goal Conditioning in Depth (Cable-Line-Notarget)</h1>
+                <p>Test-time rollouts (on Cable-Line-Notarget) of one GCTN policy trained on 1000 demonstrations. The cables start from the <i>same</i> starting configuration, and the only thing that changes is the goal image. This shows the utility of a goal-conditioned policy.</p><br>
+                <p>For clarity, we show the goal images below each of the videos. The goal images consist of two parts: the scene as viewed from the front camera (to the left, purely for visualization) and the top-down RGB image (to the right) which is actually supplied to the GCTN as input at each time step. (GCTN also uses the corresponding top-down depth goal image as in put.) The GCTN policy achieved a success in these three examples by triggering the tolerance threshold to be close to the goal.</p><br>
+
+                <div class="highlight-proj">
+                    <img src="videos/GCTN-cable-shape-notarget-goal-00.gif" width="100%">
+                    <img src="images/GCTN-goal-00.png" width="100%">
+                    <p>Cable-Line-Notarget, Goal 1.</p>
+                </div>
+                <div class="highlight-proj">
+                    <img src="videos/GCTN-cable-shape-notarget-goal-01.gif" width="100%">
+                    <img src="images/GCTN-goal-01.png" width="100%">
+                    <p>Cable-Line-Notarget, Goal 2.</p>
+                </div>
+                <div class="highlight-proj">
+                    <img src="videos/GCTN-cable-shape-notarget-goal-03.gif" width="100%">
+                    <img src="images/GCTN-goal-03.png" width="100%">
+                    <p>Cable-Line-Notarget, Goal 3.</p>
+                </div>
+
+                <div class="highlight-proj">
+                    <img src="" width="100%">
+                    <p></p>
+                </div>
+            </div>
+
+            <div style="clear: both;"></div>
+
 
             <div class="section part 1">
                 <h1>Videos -- Limitations and Failure Cases</h1>
@@ -231,7 +261,7 @@
             <div class="divider"></div>
             <div class="section paper">
                 <h1>Code</h1>
-                <p>Here is the GitHub link: <a href="https://github.com/DanielTakeshi/deformable-ravens">https://github.com/DanielTakeshi/deformable-ravens</a>. If you have questions, please use the public issue tracker. I will try to actively monitor the issue reports.</p><br>
+                <p>Here is the GitHub link: <a href="https://github.com/DanielTakeshi/deformable-ravens">https://github.com/DanielTakeshi/deformable-ravens</a>. If you have questions, please use the public issue tracker. I will try to actively monitor the issue reports, though I cannot guarantee a response.</p><br>
             </div>
 
             <!-- Demonstration Data.
@@ -293,6 +323,7 @@
                 <p>Daniel Seita is supported by the Graduate Fellowships for STEM Diversity (<a href="https://stemfellowships.org/">website</a>). We thank Xuchen Han for assistance with deformables in PyBullet, and Julian Ibarz for helpful feedback on writing.</p><br><br>
             </div>
 
+            <p>Website last updated: October 23, 2022.</p><br>
 
         </div>
     </body>
