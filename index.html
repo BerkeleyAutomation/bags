@@ -36,11 +36,13 @@
 
 
             <!-- Updates
+            It's kind of hard to get nice bullet points due to the way the website is formatted.
             -->
             <div class="section paper">
                 <h1>Website Updates</h1>
+                 <!--<ol style="list-style-type:square"> -->
                  <ol>
-                  <li><p>02/xx/2023: Stay tuned for new updates coming soon!</p></li>
+                  <li><p>02/21/2023: <b>We've added physical cable manipulation experiments</b>. See updates below. We are actively adding more experiments. We will soon update the arXiv paper with further details.</p></li>
                   <li><p>10/23/2022: Added some more examples of goal-conditioning for Cable-Line-Notarget.</p></li>
                   <li><p>05/30/2021: Finalized the website for the ICRA 2021 paper.</p></li>
                 </ol>
@@ -116,6 +118,60 @@
             </div>
 
 
+
+
+            <!-- PHYSICAL EXPERIMENTS!!
+            A huge relief. :)
+
+            Also this took a while but I now realize we have the video in the css, so we can just
+            use that div class and it seems to have default parameters that work well in the css,
+            so I don't have to customize the style="" stuff.
+            -->
+            <div style="clear: both;"></div>
+            <div class="divider"></div>
+            <div class="section paper">
+                <h1>Physical Experiments</h1>
+                <p><b>Context:</b> we originally wrote this paper in 2020 during the middle of COVID-19, and due to the circumstances, we (virtually) presented our ICRA 2021 paper with simulation-only expeirments. In early 2023, we returned to this project to demonstrate how Goal-Conditioned Transporter Networks could be applied on physical hardware. Below, we show experiments inspired by the "Cable-Line-Notarget" task in our DeformableRavens simulation benchmark. For the cable, we <a href="https://www.amazon.com/gp/product/B07BMD5ZHJ/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&th=1">use this chain</a> with 13mm balls attached together, painted with a uniform color.</p><br>
+
+                <p><b>Experiment Details:</b> we collect 30 demonstrations and use 24 of them for training (with the other 6 to monitor validation loss). We also collect 20 separate images of the cable on the workspace to be used as "goal images" at test time. For test-time execution, we use the snapshot after 20K iterations of training GCTN, which is the same as used in simulation, where one "iteration" is a batch size of 1 item. We use a Franka robot and move the robot using <a href="https://github.com/iamlab-cmu/frankapy">frankapy</a>. The Franka uses a mounted Azure Kinect camera on its end-effector; it returns to a top-down home pose after each action to query updated images of the workspace. We do <i>not</i> use specialized grippers. To initialize the setup, the human operator lightly tosses the cable on the workspace. We limit the number of robot actions to 10 per episode (i.e., rollout).</p><br>
+
+                <p><b>Changes from Simulation:</b> enabling GCTNs for deformable cable manipulation in the real world requires a few modifications compared to the simulation. Perhaps most critically, we cannot assume our gripper perfectly grasps the deformable. As a heuristic, we take a local crop centered at the a picking point and compute the best fit tangent line, and then have the gripper's finger tips open in the direction perpendicular to that tangent line. Second, to ease training, we currently use a binary segmentation mask as our images (instead of using RGB or depth images). Therefore, as a quantitative metric, we can report how much overlap exists between the cable masks in the current versus target images. We will add more details in the next edition of the paper.</p><br>
+
+                <h1>Videos of the Trained GCTN at Test Time</h1>
+
+                <p>All videos here are test-time rollouts from the same GCTN policy trained on 24 demonstrations, and are at <b>4X speed</b>.</p><br>
+
+                <p>The following two videos show successful examples of rollouts that adjust the cable to match the (same) target image.</p><br>
+
+                <div class="video">
+                    <!-- Rollout 008 -->
+                    <iframe width="420" height="230" src="https://www.youtube.com/embed/TFBMKtEMNu8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <!-- Rollout 009 -->
+                    <iframe width="420" height="230" src="https://www.youtube.com/embed/pxfMWx7mZ58" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+
+                <p>The following two videos similarly show successful examples of rollouts, now using other goal images which show the cable in different desired configurations.</p><br>
+
+                <div class="video">
+                    <!-- Rollout 012 -->
+                    <iframe width="420" height="230" src="https://www.youtube.com/embed/rdvYNfsQwHw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <!-- Rollout 013 -->
+                    <iframe width="420" height="230" src="https://www.youtube.com/embed/ipRbXzo_OQU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+    
+                <p><b>Limitations:</b> First, there might be some grasp failures, particularly when the cable has self-overlap. For example, see the first video below from 0:36 to 0:38. Interestingly, the GCTN model was still able to make the cable end up in a nice configuration as the next time step resulted in a different picking (and thus placing) point. Second, some failures are due to poor predictions from the GCTN model. For example, the second video (which has a challenging starting cable) shows a 10-action when the model may pick at perhaps suboptimal points (e.g., at 1:06) or place at the "wrong" cable endpoint location (e.g., at 1:56).</p><br>
+
+                <div class="video">
+                    <!-- Rollout 006 -->
+                    <iframe width="420" height="230" src="https://www.youtube.com/embed/kAPRXr6LAM4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <!-- Rollout 014 -->
+                    <iframe width="420" height="235" src="https://www.youtube.com/embed/A54XYMO_RuE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <br>
+ 
+            </div>
+
+
             <!-- Highlights. :D
             General outline: put all the tasks here, along with all demonstration videos.
             Make sure the GIFs don't take up too much space. Cut down file sizes if needed.
@@ -124,7 +180,7 @@
 
             <div class="section part 1">
                 <h1>Videos -- Scripted Demonstrations</h1>
-                <p>These are screen recordings of the scripted demonstrator policy for tasks in DeformableRavens. The bag tasks have screen recordings slightly sped up, and some GIFs are compressed to reduce file sizes.</p><br>
+                <p>These are screen recordings of the scripted demonstrator policy for tasks in the DeformableRavens simulation benchmark. The bag tasks have screen recordings slightly sped up, and we compress some GIFs to reduce file sizes.</p><br>
                 <div class="highlight-proj">
                     <img src="videos/tasks/demos-cable-ring-1x.gif" width="100%">
                     <p>Cable-Ring</p>
@@ -340,7 +396,7 @@
                 <p>Daniel Seita is supported by the Graduate Fellowships for STEM Diversity (<a href="https://stemfellowships.org/">website</a>). We thank Xuchen Han for assistance with deformables in PyBullet, and Julian Ibarz for helpful feedback on writing.</p><br><br>
             </div>
 
-            <p>Website last updated: January 10, 2023.</p><br>
+            <p>Website last updated: February 21, 2023.</p><br>
 
         </div>
     </body>
