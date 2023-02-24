@@ -136,7 +136,7 @@
 
                 <p><b>Experiment Details:</b> we collect 30 demonstrations and use 24 of them for training (with the other 6 to monitor validation loss). We also collect 20 separate images of the cable on the workspace to be used as "goal images" at test time. For test-time execution, we use the snapshot after 20K iterations of training GCTN, which is the same as used in simulation, where one "iteration" is a batch size of 1 item. We use a Franka robot and move it using <a href="https://github.com/iamlab-cmu/frankapy">frankapy</a>. The Franka uses a mounted Azure Kinect camera on its end-effector; it returns to a top-down home pose after each action to query updated images of the workspace. We do <i>not</i> use specialized grippers. To initialize the setup, the human operator lightly tosses the cable on the workspace. We limit the number of robot actions to 10 per episode (i.e., rollout).</p><br>
 
-                <p><b>Changes from Simulation:</b> enabling GCTNs for physical cable manipulation requires a few adjustments from simulation. Perhaps most critically, we cannot assume our gripper perfectly grasps the deformable. As a heuristic, we take a local crop centered at the a picking point and compute the best fit tangent line, and then have the gripper's finger tips open in the direction perpendicular to that tangent line. Second, to ease training, we currently use a binary segmentation mask as our images (instead of using RGB or depth images). Therefore, as a quantitative metric, we can report how much overlap exists between the cable masks in the current versus target images. <i>We will add more details in the next edition of the paper on arXiv (exact timing TBD)</i>.</p><br>
+                <p><b>Changes from Simulation:</b> enabling GCTNs for physical cable manipulation requires a few adjustments from simulation. Perhaps most critically, we cannot assume our gripper perfectly grasps the deformable. As a heuristic, we take a local crop centered at the a picking point and compute the best fit tangent line, and then have the gripper's finger tips open in the direction perpendicular to that tangent line. Second, to ease training, we currently use a binary segmentation mask as our images (instead of using RGB or depth images). Therefore, as a quantitative metric, we can report how much overlap exists between the cable masks in the current versus target images. <i>We will add more details in the next edition of the paper on arXiv (exact timing TBD)</i>.</p>
 
                 <h1>Videos of the Trained GCTN at Test Time</h1>
 
@@ -186,7 +186,6 @@
                     -->
                     <iframe width="420" height="230" src="https://www.youtube.com/embed/_QkRjrVgosA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
-                <br>
  
             </div>
 
@@ -278,15 +277,15 @@
 
                 <div class="highlight-proj">
                     <img src="videos/bag-items-1-transporter-100-success-3-actions-Sept11-reduced-50perc.gif" width="100%">
-                    <p>Bag-Items-1. (Zoomed-in) Transporter trained on 100 demos, and deployed at test-time. It successfully opens the bag, inserts the cube, and brings the bag to the target.</p>
+                    <p>Bag-Items-1. (Zoomed-in) Transporter trained on 100 demos. It successfully opens the bag, inserts the cube, and brings the bag to the target.</p>
                 </div>
                 <div class="highlight-proj">
                     <img src="videos/bag-items-2-transporter-1000-0-test-01-success-reduced-50perc.gif" width="100%">
-                    <p>Bag-Items-2. Transporter trained on 1000 demos, and deployed at test-time. It successfully opens the bag, inserts both blocks, and brings the bag to the target.</p>
+                    <p>Bag-Items-2. Transporter trained on 1000 demos. It successfully opens the bag, inserts both blocks, and brings the bag to the target.</p>
                 </div>
                 <div class="highlight-proj">
                     <img src="videos/bag-color-goal-transporter-goal-10-0-test-19-success-3x.gif" width="100%">
-                    <p>Bag-Color-Goal. Transporter-Goal-Split trained on 10 demos, and deployed at test-time. The goal image (not shown above) shows the item in the red bag, in which the policy correctly inserts the block.</p>
+                    <p>Bag-Color-Goal. Transporter-Goal-Split trained on 10 demos. The goal image (not shown above) shows the item in the red bag, in which the policy correctly inserts the block.</p>
                 </div>
 
                 <div class="highlight-proj">
