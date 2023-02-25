@@ -42,6 +42,7 @@
                 <h1>Website Updates</h1>
                  <!--<ol style="list-style-type:square"> -->
                  <ol>
+                  <li><p>02/24/2023: Added two more physical experiment videos and an evaluation metric.</p></li>
                   <li><p>02/22/2023: The physical experiment videos have been improved for visual clarity.</p></li>
                   <li><p>02/21/2023: <b>We've added physical cable manipulation experiments</b>. We are actively adding more.</p></li>
                   <li><p>10/23/2022: Added some more examples of goal-conditioning for Cable-Line-Notarget.</p></li>
@@ -136,13 +137,17 @@
 
                 <p><b>Experiment Details:</b> we collect 30 demonstrations and use 24 of them for training (with the other 6 to monitor validation loss). We also collect 20 separate images of the cable on the workspace to be used as "goal images" at test time. For test-time execution, we use the snapshot after 20K iterations of training GCTN, which is the same as used in simulation, where one "iteration" is a batch size of 1 item. We use a Franka robot and move it using <a href="https://github.com/iamlab-cmu/frankapy">frankapy</a>. The Franka uses a mounted Azure Kinect camera on its end-effector; it returns to a top-down home pose after each action to query updated images of the workspace. We do <i>not</i> use specialized grippers. To initialize the setup, the human operator lightly tosses the cable on the workspace. We limit the number of robot actions to 10 per episode (i.e., rollout).</p><br>
 
-                <p><b>Changes from Simulation:</b> enabling GCTNs for physical cable manipulation requires a few adjustments from simulation. Perhaps most critically, we cannot assume our gripper perfectly grasps the deformable. As a heuristic, we take a local crop centered at the a picking point and compute the best fit tangent line, and then have the gripper's finger tips open in the direction perpendicular to that tangent line. Second, to ease training, we currently use a binary segmentation mask as our images (instead of using RGB or depth images). Therefore, as a quantitative metric, we can report how much overlap exists between the cable masks in the current versus target images. <i>We will add more details in the next edition of the paper on arXiv (exact timing TBD)</i>.</p>
+                <p><b>Changes from Simulation:</b> enabling GCTNs for physical cable manipulation requires a few adjustments from simulation. Perhaps most critically, we cannot assume our gripper perfectly grasps the deformable. As a heuristic, we take a local crop centered at the a picking point and compute the best fit tangent line, and then have the gripper's finger tips open in the direction perpendicular to that tangent line. Second, to ease training, we currently use a binary segmentation mask as our images, instead of RGB and depth.</p><br>
+
+                <p><b>Quantitative Evaluation Metric</b></b>: we report <b>cable mask intersection over union (IoU)</b>. We compute this at each time by considering the current and goal cable mask images (which are passed as input to the GCTN) and computing the IoU. We consider a test-time episode rollout as a success if the cable mask overlap ever reaches above some threshold within the 10-action limit. Our threshold is currently 0.25, which we found to correlate with strong qualitative results but which is also forgiving of certain physical limitations. For example the robot will have some imprecision when picking and placing due to slight errors in calibration.</p><br>
+
+                <p><i>We will add more details about all the above points in the next edition of the paper on arXiv (exact timing TBD)</i>.</p>
 
                 <h1>Videos of the Trained GCTN at Test Time</h1>
 
-                <p>All videos here are test-time rollouts from the same GCTN policy trained on 24 demonstrations, and are at <b>4X speed</b>. In all the videos, we overlay (to the right) the current image of the workspace, and below it, the goal image. The current image changes after each action while the goal image (below it) remains fixed. For visual clarity we overlay RGB images in the videos, but the GCTN takes as input the binary masks of the current and goal cable.</p><br>
+                <p>All videos here are test-time rollouts from the same GCTN policy trained on 24 demonstrations, and are at <b>4X speed</b>. In all the videos, we overlay (to the right) the current image of the workspace, and below it, the goal image. The current image changes after each action while the goal image <i>remains fixed</i>. For visual clarity we overlay RGB images in the videos, but the GCTN takes as input the current and goal cable binary mask images.</p><br>
 
-                <p>The following two videos similarly show successful examples of rollouts.</p><br>
+                <p>The following two videos show successful examples of rollouts. The GCTN was able to increase the cable mask IoU from 0.0 to 0.278 in the first video, and from 0.0 to 0.308 in the second video.</p><br>
 
                 <div class="video">
                     <!-- Rollout 008 with image overlay -->
@@ -157,7 +162,16 @@
                     <iframe width="420" height="230" src="https://www.youtube.com/embed/r73I5d9EEo4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
 
-                <p>Similarly, the following two videos show rollouts, on different goal images.</p><br>
+                <p>The following two videos show two more successful rollouts. The GCTN was able to increase the cable mask IoU from 0.0 to 0.454 in the first video, and from 0.052 to 0.417 in the second video. The second video shows that the policy has a few suboptimal actions, but is able to recover.</p><br>
+
+                <div class="video">
+                    <!-- Rollout 017 with image overlay -->
+                    <iframe width="420" height="230" src="https://www.youtube.com/embed/TOz2AKct7Fc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <!-- Rollout 019 with image overlay -->
+                    <iframe width="420" height="230" src="https://www.youtube.com/embed/4advSJ6Zwq0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+
+                <p>The following two videos demonstrate the challenge of precisely getting a cable to align with a goal. Even though the robot might qualitatively move the cable to a "reasonable" goal configuration, the cable mask IoU only gets to 0.131 and 0.013 at the end of these respective videos.</p><br>
 
                 <div class="video">
                     <!-- Rollout 012 with image overlay -->
@@ -171,12 +185,12 @@
                     -->
                     <iframe width="420" height="230" src="https://www.youtube.com/embed/mufqPYUiErU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
-    
-                <p><b>Limitations:</b> First, there can be grasp failures, particularly when the cable self-overlaps, as shown in the first video below (0:36 to 0:38). Interestingly, the GCTN model was still able to make the cable end up in a nice configuration as the next time step resulted in a different picking (and thus placing) point. Second, some failures are due to poor predictions from the GCTN model. For example, the second video (which has a challenging starting cable) shows a 10-action sequence when the model picks at suboptimal points (e.g., at 1:06) or place at the "wrong" cable endpoint location (e.g., at 1:56) in addition to a grasping failure at 0:06.</p><br>
+
+                <p><b>Limitations:</b> First, there can be grasp failures, particularly when the cable self-overlaps, as shown in the first video below (0:36 to 0:38). Interestingly, the GCTN model was still able to make the cable end up in a nice configuration as the next time step resulted in a different picking (and thus placing) point, and the final cable mask IoU is 0.333 which exceeds our success cutoff. Second, some failures are due to poor predictions from the GCTN model. For example, the second video (which has a challenging starting cable) shows a 10-action sequence when the model picks at suboptimal points (e.g., at 1:06) or place at the "wrong" cable endpoint location (e.g., at 1:56) in addition to a grasping failure at 0:06.</p><br>
 
                 <div class="video">
                     <!-- Rollout 006 with image overlay -->
-                    <!-- 
+                    <!--
                     <iframe width="420" height="230" src="https://www.youtube.com/embed/kAPRXr6LAM4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     -->
                     <iframe width="420" height="230" src="https://www.youtube.com/embed/RjhsX_OR3gQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -186,7 +200,7 @@
                     -->
                     <iframe width="420" height="230" src="https://www.youtube.com/embed/_QkRjrVgosA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
- 
+
             </div>
 
 
