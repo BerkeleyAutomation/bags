@@ -42,6 +42,7 @@
                 <h1>Website Updates</h1>
                  <!--<ol style="list-style-type:square"> -->
                  <ol>
+                  <li><p>06/11/2023: Code for physical experiments <a href="https://github.com/DanielTakeshi/gctn_physical">released here</a>.</p></li>
                   <li><p>03/01/2023: Added clarification on simulation results and a bar chart.</p></li>
                   <li><p>02/24/2023: Added four more physical experiment videos and an evaluation metric.</p></li>
                   <li><p>02/22/2023: The physical experiment videos have been improved for visual clarity.</p></li>
@@ -141,8 +142,6 @@
                 <p><b>Changes from Simulation:</b> enabling GCTNs for physical cable manipulation requires a few adjustments from simulation. Perhaps most critically, we cannot assume our gripper perfectly grasps the deformable. As a heuristic, we take a local crop centered at the a picking point and compute the best fit tangent line, and then have the gripper's finger tips open in the direction perpendicular to that tangent line. Second, to ease training, we currently use a binary segmentation mask as our images, instead of RGB and depth.</p><br>
 
                 <p><b>Quantitative Evaluation Metric</b></b>: we report <b>cable mask intersection over union (IoU)</b>. We compute this at each time by considering the current and goal cable mask images (which are passed as input to the GCTN) and computing the IoU. We consider a test-time episode rollout as a success if the cable mask overlap ever reaches above some threshold within the 10-action limit. Our threshold is currently 0.25, which we found to correlate with strong qualitative results but which is also forgiving of certain physical limitations. For example the robot will have some imprecision when picking and placing due to slight errors in calibration.</p><br>
-
-                <p><i>We will add more details about all the above points in the next edition of the paper on arXiv (exact timing TBD)</i>.</p>
 
                 <h1>Videos of the Trained GCTN at Test Time</h1>
 
